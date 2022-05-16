@@ -44,6 +44,18 @@ module Administrate
           params.fetch(:direction, direction),
         )
       end
+
+      def associated_resource_options
+        candidate_resources.map do |resource|
+          [display_candidate_resource(resource), resource.send(primary_key)]
+        end
+      end
+
+      def order
+        @order ||= Administrate::Order.new(sort_by, direction)
+      end
+
+
     end
   end
 end
