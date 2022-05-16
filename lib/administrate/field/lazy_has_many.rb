@@ -37,6 +37,13 @@ module Administrate
       def result_limit
         options[:result_limit] || 10
       end
+
+      def order_from_params(params)
+        Administrate::Order.new(
+          params.fetch(:order, sort_by),
+          params.fetch(:direction, direction),
+        )
+      end
     end
   end
 end
